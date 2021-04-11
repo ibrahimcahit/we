@@ -183,7 +183,7 @@ class _CoinScreenState extends State<CoinScreen> {
           ),
           Center(
             child: Text(
-              "Teşekkürler kahraman!",
+              "Thanks!",
               style: TextStyle(color: kPrimaryColor, fontSize: 32),
             ),
           ),
@@ -197,7 +197,7 @@ class _CoinScreenState extends State<CoinScreen> {
             height: size.height * 0.2,
             width: size.width * 0.7,
             child: RaisedButton(
-              child: Center(child: Text("Ödülünü almak için iki kez tıkla !")),
+              child: Center(child: Text("Reward !")),
               color: kPrimaryColor,
               onPressed: () {
                 setState(() {
@@ -215,7 +215,7 @@ class _CoinScreenState extends State<CoinScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Geri dönüştürdüğün miktar: ",
+                "Grams: ",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               Text(
@@ -228,7 +228,7 @@ class _CoinScreenState extends State<CoinScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Kazanılan coin: ",
+                "Coin: ",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               Text(

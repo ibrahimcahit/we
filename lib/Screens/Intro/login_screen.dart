@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 scale: 2,
               ),
               RoundedInputField(
+                keyboardType: TextInputType.emailAddress,
                 hintText: "   E-mail",
                 onChanged: (value) {
                   setState(() {

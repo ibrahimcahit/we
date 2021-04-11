@@ -1,3 +1,4 @@
+import 'package:WE/Screens/ProfileDrawer/Profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:WE/models/post_model.dart';
 
@@ -37,14 +38,26 @@ class _FeedScreenState extends State<FeedScreen> {
                           ),
                         ],
                       ),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
-                        child: ClipOval(
-                          child: Image(
-                            height: 50.0,
-                            width: 50.0,
-                            image: AssetImage(posts[index].authorImageUrl),
-                            fit: BoxFit.cover,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProfilePage();
+                              },
+                            ),
+                          );
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.black,
+                          child: ClipOval(
+                            child: Image(
+                              height: 50.0,
+                              width: 50.0,
+                              image: AssetImage(posts[index].authorImageUrl),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

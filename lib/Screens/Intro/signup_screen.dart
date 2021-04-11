@@ -16,7 +16,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  String _username, _email, _password;
+  String _username, _email, _password, _city, _superhero;
   final auth = FirebaseAuth.instance;
 
   @override
@@ -42,6 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   RoundedInputField(
+                    keyboardType: TextInputType.emailAddress,
                     hintText: "   E-mail",
                     icon: Icons.mail,
                     onChanged: (value) {
@@ -61,12 +62,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   RoundedInputField(
                     hintText: "   City",
                     icon: Icons.location_city_outlined,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _city = value.trim();
+                    },
                   ),
                   RoundedInputField(
-                    hintText: "   Your favourite super hero",
+                    hintText: " Your favourite super hero",
                     icon: Icons.local_fire_department_outlined,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      _superhero = value.trim();
+                    },
                   ),
                   RoundedButton(
                     text: "SIGN UP",
@@ -75,8 +80,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           .createUserWithEmailAndPassword(
                               email: _email, password: _password)
                           .then((_) {
-                        signUp(_username, _email);
-                        getUserData();
+                        signUp(
+                            name: _username,
+                            email: _email,
+                            city: _city,
+                            superhero: _superhero);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => BottomNavigation()));
                       });

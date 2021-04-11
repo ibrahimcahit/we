@@ -1,9 +1,11 @@
 import 'package:WE/Screens/BottomNavigation/Feed/feed_screen.dart';
+import 'package:WE/Screens/Intro/welcome_screen.dart';
 import 'package:WE/Screens/ProfileDrawer/Badges/badges_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Challenges/challenge_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Help/contact_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Profile/profile_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Feedback/feedback_page.dart';
+import 'package:WE/deneme.dart';
 import 'package:flutter/material.dart';
 import 'package:WE/Resources/constants.dart';
 import 'package:WE/Services/ChatService/chat_screen.dart';
@@ -82,6 +84,7 @@ class ProfileDrawerState extends State<ProfileDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     List<Widget> drawerOptions = [];
     for (var i = 0; i < widget.drawerItems.length - 1; i++) {
       var d = widget.drawerItems[i];
@@ -113,7 +116,7 @@ class ProfileDrawerState extends State<ProfileDrawer> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SearchPage();
+                    return GetUserName();
                   },
                 ),
               );
@@ -163,12 +166,55 @@ class ProfileDrawerState extends State<ProfileDrawer> {
                 "Alihan Soykal",
                 style: TextStyle(color: kThirdColor),
               ),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: kThirdColor,
-                child: Image.asset("assets/Images/People/alihan.png"),
+              currentAccountPicture: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ProfilePage();
+                      },
+                    ),
+                  );
+                },
+                child: CircleAvatar(
+                  backgroundColor: kThirdColor,
+                  child: Image.asset("assets/Images/People/alihan.png"),
+                ),
               ),
             ),
             Column(children: drawerOptions),
+            SizedBox(
+              height: size.height * 0.07,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil<dynamic>(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                      builder: (BuildContext context) => WelcomeScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+                child: Container(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "Sign out ",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Icon(
+                      Icons.cancel_presentation,
+                      color: Colors.grey,
+                    )
+                  ],
+                )),
+              ),
+            )
           ],
         ),
       ),
