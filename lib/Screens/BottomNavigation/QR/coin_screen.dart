@@ -33,9 +33,8 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
   @override
   void initState() {
     super.initState();
-
     databaseReference
-        .child(widget.currentText)
+        .child(widget.qrResult==null?widget.currentText:widget.qrResult)
         .once()
         .then((DataSnapshot data) {
       print(data.value["WEIGHT"]);
@@ -80,7 +79,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
             Expanded(
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24),
                 child: PhysicalModel(
                   elevation: 10.0,
                   shape: BoxShape.rectangle,
@@ -102,11 +101,11 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                     children: [
                                       PhysicalModel(
                                         elevation: 20.0,
@@ -149,7 +148,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   PhysicalModel(
                                     elevation: 20.0,
@@ -158,7 +157,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                                     color: kSecondaryColor,
                                     child: ClipRRect(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(90)),
+                                      BorderRadius.all(Radius.circular(90)),
                                       child: Container(
                                         width: 90,
                                         height: 90,
@@ -177,7 +176,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                                     color: kSecondaryColor,
                                     child: ClipRRect(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(90)),
+                                      BorderRadius.all(Radius.circular(90)),
                                       child: Container(
                                         width: 90,
                                         height: 90,
@@ -196,7 +195,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                                     color: kSecondaryColor,
                                     child: ClipRRect(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(90)),
+                                      BorderRadius.all(Radius.circular(90)),
                                       child: Container(
                                         width: 90,
                                         height: 90,
@@ -215,7 +214,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     children: [
@@ -244,7 +243,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Column(
                                     children: [
