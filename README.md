@@ -16,7 +16,7 @@ You should use **"6G34"** the four-digit code which belongs to our HeroStation t
 
 **Here are the QR codes for you to try:**
 
-<img src="https://user-images.githubusercontent.com/72455964/114351617-8764b300-9b73-11eb-934a-28f3d41df8c4.png" width="200" height="200" />
+<img src="https://user-images.githubusercontent.com/72455964/114351617-8764b300-9b73-11eb-934a-28f3d41df8c4.png" width="150" height="150" />
 
 
 
