@@ -24,7 +24,7 @@ git code which belongs to our HeroStation to use QR part of the app.
 
 ### WE
 A flutter app aims to make plastic transformation by using the power of gamification and community impact.
-<img src="https://user-images.githubusercontent.com/72455964/113296136-c4be7a80-9301-11eb-9991-e897f1b945a0.png" width="250" height="250" /> <img src="https://user-images.githubusercontent.com/72455964/113296130-c38d4d80-9301-11eb-8b9a-fc3a5ec142dc.png" width="200" height="200" /> 
+<img src="https://user-images.githubusercontent.com/72455964/113296136-c4be7a80-9301-11eb-9991-e897f1b945a0.png" width="250" height="250" /> <img src="https://user-images.githubusercontent.com/72455964/113296130-c38d4d80-9301-11eb-8b9a-fc3a5ec142dc.png" width="250" height="250" /> 
 
 ## QR Pages
 <img src="https://user-images.githubusercontent.com/72455964/114354997-9f3e3600-9b77-11eb-8f6a-209a32bbbf80.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114355079-b8df7d80-9b77-11eb-9f28-4c7f3a46690b.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114355071-b67d2380-9b77-11eb-863d-e76850dde171.jpg" width="162" height="337" /> 
