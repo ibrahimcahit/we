@@ -1,5 +1,7 @@
 # How to run the App?
 
+https://drive.google.com/file/d/1suOkLI5ZQsw8h1wEr8shDdqvjNRqMCdM/view?usp=sharing
+
 Just **download the app** or clone the url then, **get dependencies** **(pub get in pubspec.yaml)**, then **run main.dart**.
 
 You can use this e-mail and password to login and of course you can sign up :)
