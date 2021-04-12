@@ -10,7 +10,7 @@ You can use this e-mail and password below to login to have better user experien
 
 **Last thing before getting started**
 
-You should use **6G34** the four-digit code which belongs to our HeroStation to use QR part of the app.
+You should use **"6G34"** the four-digit code which belongs to our HeroStation to use QR part of the app.
 
 
 **Here are the QR codes for you to try:**
