@@ -17,8 +17,8 @@ git code which belongs to our HeroStation to use QR part of the app.
 
 
 **Here is a QR code for you to try:**
-<img src="https://user-images.githubusercontent.com/72455964/114367751-70c75780-9b85-11eb-95a2-519b91bbffad.png" width="280" height="250" /> <img src="https://user-images.githubusercontent.com/72455964/114367754-71f88480-9b85-11eb-924e-6f9ab71d4292.png" width="280" height="250" /> <img src="https://user-images.githubusercontent.com/72455964/114351617-8764b300-9b73-11eb-934a-28f3d41df8c4.png" width="280" height="250" />
 
+<img src="https://user-images.githubusercontent.com/72455964/114367751-70c75780-9b85-11eb-95a2-519b91bbffad.png" width="280" height="250" /> <img src="https://user-images.githubusercontent.com/72455964/114367754-71f88480-9b85-11eb-924e-6f9ab71d4292.png" width="280" height="250" /> 
 
 
 
