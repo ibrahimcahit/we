@@ -1,3 +1,4 @@
+import 'package:WE/Resources/SizeConfig.dart';
 import 'package:WE/Screens/BottomNavigation/Feed/feed_screen.dart';
 import 'package:WE/Screens/Intro/welcome_screen.dart';
 import 'package:WE/Screens/ProfileDrawer/Badges/badges_page.dart';
@@ -5,7 +6,8 @@ import 'package:WE/Screens/ProfileDrawer/Challenges/challenge_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Help/contact_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Profile/profile_page.dart';
 import 'package:WE/Screens/ProfileDrawer/Feedback/feedback_page.dart';
-import 'package:WE/deneme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:WE/Resources/constants.dart';
 import 'package:WE/Services/ChatService/chat_screen.dart';
@@ -50,6 +52,8 @@ class ProfileDrawer extends StatefulWidget {
 }
 
 class ProfileDrawerState extends State<ProfileDrawer> {
+  var firebaseUser = FirebaseAuth.instance.currentUser;
+
   int _selectedDrawerIndex = 0;
 
   _getDrawerItemWidget(int pos) {
@@ -101,123 +105,153 @@ class ProfileDrawerState extends State<ProfileDrawer> {
         onTap: () => _onSelectItem(i + 1),
       ));
     }
-    return Scaffold(
-      backgroundColor: kPrimaryColor,
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.search_rounded,
-              color: Colors.white,
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return GetUserName();
-                  },
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: Container(
-                width: 30,
-                child: Image.asset(
-                  "assets/Icons/send.png",
-                  color: Colors.white,
-                )),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ChatPage();
-                  },
-                ),
-              );
-            },
-          )
-        ],
-        centerTitle: true,
-        backgroundColor: kPrimaryColor,
-        title: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            "WE",
-            style: TextStyle(
-                color: Colors.white, fontSize: 30, fontFamily: 'Panthera'),
-          ),
-        ),
-      ),
-      body: _getDrawerItemWidget(_selectedDrawerIndex),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: kPrimaryColor),
-              accountName: Text(
-                "Superman",
-                style: TextStyle(color: kThirdColor),
-              ),
-              accountEmail: Text(
-                "Alihan Soykal",
-                style: TextStyle(color: kThirdColor),
-              ),
-              currentAccountPicture: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return ProfilePage();
-                      },
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    return FutureBuilder<DocumentSnapshot>(
+        future: users.doc(firebaseUser.uid).get(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong");
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data = snapshot.data.data();
+            return Scaffold(
+              backgroundColor: kPrimaryColor,
+              appBar: AppBar(
+                actions: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.search_rounded,
+                      color: Colors.white,
+                      size: 30,
                     ),
-                  );
-                },
-                child: CircleAvatar(
-                  backgroundColor: kThirdColor,
-                  child: Image.asset("assets/Images/People/alihan.png"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SearchPage();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Container(
+                        width: 30,
+                        child: Image.asset(
+                          "assets/Icons/send.png",
+                          color: Colors.white,
+                        )),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ChatPage();
+                          },
+                        ),
+                      );
+                    },
+                  )
+                ],
+                centerTitle: true,
+                backgroundColor: kPrimaryColor,
+                title: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "WE",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontFamily: 'Panthera'),
+                  ),
                 ),
               ),
-            ),
-            Column(children: drawerOptions),
-            SizedBox(
-              height: size.height * 0.07,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushAndRemoveUntil<dynamic>(
-                    context,
-                    MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => WelcomeScreen(),
+              body: _getDrawerItemWidget(_selectedDrawerIndex),
+              drawer: Drawer(
+                child: Column(
+                  children: <Widget>[
+                    UserAccountsDrawerHeader(
+                      decoration: BoxDecoration(color: kPrimaryColor),
+                      accountName: Text(
+                        data["superhero"],
+                        style: TextStyle(color: kThirdColor),
+                      ),
+                      accountEmail: Text(
+                        data["name"],
+                        style: TextStyle(color: kThirdColor),
+                      ),
+                      currentAccountPicture: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProfilePage();
+                              },
+                            ),
+                          );
+                        },
+                        child: data["avatar"] != null
+                            ? Container(
+                                height: 11 * SizeConfig.heightMultiplier,
+                                width: 22 * SizeConfig.widthMultiplier,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(data["avatar"]))),
+                              )
+                            : Icon(
+                                Icons.account_circle_rounded,
+                                size: 80,
+                                color: Colors.grey,
+                              ),
+                      ),
                     ),
-                    (route) => false,
-                  );
-                },
-                child: Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Sign out ",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Icon(
-                      Icons.cancel_presentation,
-                      color: Colors.grey,
+                    Column(children: drawerOptions),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil<dynamic>(
+                            context,
+                            MaterialPageRoute<dynamic>(
+                              builder: (BuildContext context) =>
+                                  WelcomeScreen(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Sign out ",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                Icon(
+                                  Icons.cancel_presentation,
+                                  color: Colors.grey,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     )
                   ],
-                )),
+                ),
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        });
   }
 }

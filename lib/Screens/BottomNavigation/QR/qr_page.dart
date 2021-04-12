@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:WE/Resources/components/or_divider.dart';
+import 'package:WE/Screens/BottomNavigation/QR/pin_code.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +36,8 @@ class QRScanPageState extends State<QRScanPage> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            //            return CoinScreen(qrResult);
-            return CoinScreenExample();
+            //            return CoinScreenExample(qrResult);
+            return CoinScreenExample(qrResult: qrResult);
           },
         ),
       );
@@ -83,7 +85,7 @@ class QRScanPageState extends State<QRScanPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ListView(
+        child: Column(
           children: [
             Center(
               child: Padding(
@@ -135,130 +137,43 @@ class QRScanPageState extends State<QRScanPage> {
                 }).toList(),
               ),
             ]),
-            SizedBox(height: size.height * 0.1),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  NiceButton(
+                    width: 150,
+                    radius: 10,
+                    text: "Scan",
+                    icon: Icons.qr_code_rounded,
+                    gradientColors: [Color(0xFFff4d00), Color(0xFFff9a00)],
+                    onPressed: _scanQR,
+                    background: kSecondaryColor,
+                  ),
+                  NiceButton(
+                    width: 150,
+                    radius: 10,
+                    text: "Enter",
+                    icon: Icons.add_to_home_screen_rounded,
+                    gradientColors: [Color(0xFFff4d00), Color(0xFFff9a00)],
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return PinCodeVerificationScreen();
+                          },
+                        ),
+                      );
+                    },
+                    background: kSecondaryColor,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(35.0),
-        child: NiceButton(
-          radius: 40,
-          padding: const EdgeInsets.all(15),
-          text: "Scan",
-          icon: Icons.camera_alt,
-          gradientColors: [Color(0xFFff4d00), Color(0xFFff9a00)],
-          onPressed: _scanQR,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
-
-class CoinScreen extends StatefulWidget {
-  final String result;
-
-  CoinScreen(this.result);
-
-  @override
-  _CoinScreenState createState() => _CoinScreenState();
-}
-
-class _CoinScreenState extends State<CoinScreen> {
-  final databaseReference = FirebaseDatabase.instance.reference();
-  int measuredWeight = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("WE"),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.05,
-          ),
-          Center(
-            child: Text(
-              "Thanks!",
-              style: TextStyle(color: kPrimaryColor, fontSize: 32),
-            ),
-          ),
-          SizedBox(
-              height: size.height * 0.4,
-              width: size.width * 0.4,
-              child: IconButton(
-                icon: Image.asset("assets/we2.png"),
-              )),
-          Container(
-            height: size.height * 0.2,
-            width: size.width * 0.7,
-            child: RaisedButton(
-              child: Center(child: Text("Reward !")),
-              color: kPrimaryColor,
-              onPressed: () {
-                setState(() {
-                  fetchData(widget.result);
-                });
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-            ),
-          ),
-          SizedBox(
-            height: size.height * 0.03,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Grams: ",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              Text(
-                measuredWeight.toString() + " g",
-                style: TextStyle(color: kPrimaryColor, fontSize: 24),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Coin: ",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              Text(
-                doubleWeight(measuredWeight).toString() + " WE Coin",
-                style: TextStyle(color: kPrimaryColor, fontSize: 24),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  void fetchData(String result) async {
-    await databaseReference.once().then((DataSnapshot snapshot) {
-      measuredWeight = snapshot.value[result]["WEIGHT"];
-    });
-  }
-
-  int doubleWeight(int number) {
-    if (number != 0) {
-      return number = number + number;
-    }
-    return number;
-  }
-}
-
-//FloatingActionButton.extended(
-//             backgroundColor: kPrimaryColor,
-//             icon: Icon(Icons.camera_alt,size: 56,),
-//             label: Center(child: Text("Scan",style: TextStyle(fontSize: 32),)),
-//             onPressed: _scanQR,
-//           ),

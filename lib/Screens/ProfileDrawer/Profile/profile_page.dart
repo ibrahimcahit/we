@@ -66,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     )
                                   : Icon(
                                       Icons.account_circle_rounded,
-                                      size: 75,
+                                      size: 120,
                                       color: Colors.grey,
                                     ),
                               SizedBox(
@@ -155,13 +155,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  Navigator.pushAndRemoveUntil<dynamic>(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return EditProfile();
-                                      },
+                                    MaterialPageRoute<dynamic>(
+                                      builder: (BuildContext context) =>
+                                          EditProfile(),
                                     ),
+                                    (route) => false,
                                   );
                                   //getImage(true);
                                 },
@@ -215,58 +215,58 @@ class _ProfilePageState extends State<ProfilePage> {
                                           center: Text(
                                               "Level ${data['level'].toString()} "), //text inside it
                                         ))),
-                                Container(
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Recycled",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      Text(
-                                        "today:",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        data["dailyRecycled"].toString(),
-                                        style: TextStyle(color: kPrimaryColor),
-                                      ),
-                                      SizedBox(
-                                        height: 17,
-                                      ),
-                                      Text(
-                                        "Coin earned",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      Text(
-                                        "today:",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        data["dailyCoins"].toString(),
-                                        style: TextStyle(color: kPrimaryColor),
-                                      ),
-                                      SizedBox(height: size.height * 0.03),
-                                      Text(
-                                        "Your impact:",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Recycled",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "today:",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      data["dailyRecycled"].toString(),
+                                      style: TextStyle(color: kPrimaryColor),
+                                    ),
+                                    SizedBox(
+                                      height: 17,
+                                    ),
+                                    Text(
+                                      "Coin earned",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "today:",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      data["dailyCoins"].toString(),
+                                      style: TextStyle(color: kPrimaryColor),
+                                    ),
+                                    SizedBox(height: size.height * 0.03),
+                                    Text(
+                                      "Your impact:",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Wrap(children: [
                                       Text(
                                         data["impact"][0],
                                         style: TextStyle(
                                             color: kPrimaryColor,
                                             fontSize: 13.2),
                                       ),
-                                    ],
-                                  ),
+                                    ]),
+                                  ],
                                 ),
                               ],
                             ),

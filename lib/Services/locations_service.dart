@@ -83,7 +83,7 @@ Future<Locations> getHeroStations() async {
   //temporarily
   //will be changed to Cloud Firestore
   const heroStationLocations =
-      'https://my-json-server.typicode.com/alihansoykal/WeDB/db';
+      'https://my-json-server.typicode.com/alihansoykal/we/db';
 
   final response = await http.get(heroStationLocations);
   if (response.statusCode == 200) {

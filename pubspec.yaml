@@ -46,6 +46,9 @@ dependencies:
   image_picker: ^0.5.3+2
   introduction_screen: ^1.0.9
   permission_handler: ^5.1.0+2
+  shared_preferences: ^0.5.12+4
+  after_layout: ^1.0.7+2
+  pin_code_fields: ^6.1.0
 
 dev_dependencies:
   pedantic: ^1.9.0
@@ -74,4 +77,5 @@ flutter:
     - assets/Images/People/
     - assets/Images/BottomNavigation/
     - assets/Images/Badges/
+    - assets/Images/Onboarding/
 

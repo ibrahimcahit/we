@@ -40,14 +40,6 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProfilePage();
-                              },
-                            ),
-                          );
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.black,

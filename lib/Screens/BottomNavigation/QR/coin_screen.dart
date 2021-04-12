@@ -1,3 +1,7 @@
+import 'package:WE/Screens/BottomNavigation/bottom_navigation.dart';
+import 'package:WE/Services/user_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:WE/Resources/components/or_divider.dart';
@@ -5,16 +9,62 @@ import '../../../Resources/components/social_icon.dart';
 import '../../../Resources/constants.dart';
 
 class CoinScreenExample extends StatefulWidget {
+  final String qrResult;
+  final String currentText;
+
+  CoinScreenExample({this.qrResult, this.currentText});
+
   @override
   _CoinScreenExampleState createState() => _CoinScreenExampleState();
 }
 
 class _CoinScreenExampleState extends State<CoinScreenExample> {
+  int measuredWeight;
+  int measuredCoin;
+  final databaseReference = FirebaseDatabase.instance.reference();
+
+  int doubleWeight(int number) {
+    if (number != 0) {
+      return number = number + number;
+    }
+    return number;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    databaseReference
+        .child(widget.currentText)
+        .once()
+        .then((DataSnapshot data) {
+      print(data.value["WEIGHT"]);
+      print(data.key);
+      setState(() {
+        measuredWeight = data.value["WEIGHT"];
+        measuredCoin = measuredWeight + measuredWeight;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return BottomNavigation();
+                },
+              ),
+            );
+          },
+        ),
         centerTitle: true,
         title: Text(
           'GET YOUR REWARD',
@@ -199,7 +249,7 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                                   Column(
                                     children: [
                                       Text(
-                                        " 144",
+                                        measuredCoin.toString(),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
@@ -209,7 +259,10 @@ class _CoinScreenExampleState extends State<CoinScreenExample> {
                                   ),
                                   Column(
                                     children: [
-                                      Text("   72 g",
+                                      Text(
+                                          "  " +
+                                              measuredWeight.toString() +
+                                              " g",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,

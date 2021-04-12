@@ -1,8 +1,8 @@
+import 'package:WE/Screens/BottomNavigation/Leaderboard/leaderboard.dart';
+import 'package:WE/Screens/BottomNavigation/Offers/offers.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:WE/Screens/BottomNavigation/Leaderboard/leaderboard_page.dart';
 import 'package:WE/Screens/BottomNavigation/Map/map_view.dart';
-import 'package:WE/Screens/BottomNavigation/Offers/opportunities.dart';
 import 'package:WE/Screens/BottomNavigation/QR/qr_page.dart';
 import 'package:WE/Screens/ProfileDrawer/profile_drawer.dart';
 import '../../Resources/constants.dart';
@@ -18,8 +18,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     ProfileDrawer(),
     MapView(),
     QRScanPage(),
-    OpportunitiesPage(),
-    LeaderboardPage()
+    Offer(),
+    Leaderboard()
   ];
 
   @override

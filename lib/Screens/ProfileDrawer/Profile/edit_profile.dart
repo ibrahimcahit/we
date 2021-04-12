@@ -4,7 +4,7 @@ import 'package:WE/Resources/SizeConfig.dart';
 import 'package:WE/Resources/components/text_field_container.dart';
 import 'package:WE/Resources/constants.dart';
 import 'package:WE/Screens/BottomNavigation/bottom_navigation.dart';
-import 'package:WE/Services/authentication.dart';
+import 'package:WE/Services/user_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -19,12 +19,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _superheroController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
   String _newUsername,
       _newEmail,
       _newPassword,
@@ -42,18 +36,15 @@ class _EditProfileState extends State<EditProfile> {
     final _storage = FirebaseStorage.instance;
     File image;
 
-    //Check Permissions
     await Permission.photos.request();
 
     var permissionStatus = await Permission.photos.status;
 
     if (permissionStatus.isGranted) {
-      //Select Image
       image = await ImagePicker.pickImage(source: ImageSource.gallery);
       var file = File(image.path);
 
       if (image != null) {
-        //Upload to Firebase
         var snapshot = await _storage
             .ref()
             .child('profilePhotos/${basename(image.path)}')
@@ -136,10 +127,12 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     subtitle: TextField(
-                      controller: _nameController,
-                      onChanged: (value1) {
+                      onSubmitted: (value1) {
                         setState(() {
                           _newUsername = value1.trim();
+                          brewCollection.doc(uid).update({
+                            "name": _newUsername,
+                          });
                         });
                       },
                       style: TextStyle(
@@ -163,10 +156,12 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     subtitle: TextField(
-                      controller: _emailController,
-                      onChanged: (value2) {
+                      onSubmitted: (value) {
                         setState(() {
-                          _newEmail = value2.trim();
+                          _newEmail = value.trim();
+                          brewCollection.doc(uid).update({
+                            "email": _newEmail,
+                          });
                         });
                       },
                       style: TextStyle(
@@ -190,11 +185,12 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     subtitle: TextField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      onChanged: (value3) {
+                      onSubmitted: (value1) {
                         setState(() {
-                          _newPassword = value3.trim();
+                          _newPassword = value1.trim();
+                          brewCollection.doc(uid).update({
+                            "password": _newPassword,
+                          });
                         });
                       },
                       style: TextStyle(
@@ -218,10 +214,12 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     subtitle: TextField(
-                      controller: _cityController,
-                      onChanged: (value4) {
+                      onSubmitted: (value) {
                         setState(() {
-                          _newCity = value4.trim();
+                          _newCity = value.trim();
+                          brewCollection.doc(uid).update({
+                            "city": _newCity,
+                          });
                         });
                       },
                       style: TextStyle(
@@ -245,10 +243,12 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                   subtitle: TextField(
-                    controller: _superheroController,
-                    onChanged: (value5) {
+                    onSubmitted: (value) {
                       setState(() {
-                        _newSuperhero = value5.trim();
+                        _newSuperhero = value.trim();
+                        brewCollection.doc(uid).update({
+                          "superhero": _newSuperhero,
+                        });
                       });
                     },
                     style: TextStyle(
@@ -273,7 +273,14 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                     subtitle: TextField(
-                      controller: _addressController,
+                      onSubmitted: (value) {
+                        setState(() {
+                          _newAddress = value.trim();
+                          brewCollection.doc(uid).update({
+                            "address": _newAddress,
+                          });
+                        });
+                      },
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 3.5 * SizeConfig.textMultiplier,
@@ -294,13 +301,6 @@ class _EditProfileState extends State<EditProfile> {
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     onPressed: () {
-                      updateUserData(
-                          username: _newUsername,
-                          email: _newEmail,
-                          password: _newPassword,
-                          city: _newCity,
-                          address: _newAddress,
-                          superhero: _newSuperhero);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -2,17 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:WE/Resources/SizeConfig.dart';
 import 'package:WE/Screens/ProfileDrawer/Profile/user_profile.dart';
 
-class LeaderboardPage extends StatelessWidget {
+class GlobalTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Leaderboard",
-          style: TextStyle(fontFamily: "Panthera", fontSize: 30),
-        ),
-      ),
       body: ListView.builder(
         itemCount: titles.length,
         itemBuilder: (context, index) {
