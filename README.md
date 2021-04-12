@@ -1,3 +1,4 @@
+![6G34-2](https://user-images.githubusercontent.com/72455964/114351604-83d12c00-9b73-11eb-9bab-78daf776a5b7.png)
 # How to run the App?
 
 https://drive.google.com/file/d/1suOkLI5ZQsw8h1wEr8shDdqvjNRqMCdM/view?usp=sharing
@@ -15,7 +16,7 @@ You should use **"6G34"** the four-digit code which belongs to our HeroStation t
 
 **Here are the QR codes for you to try:**
 
-<img src="https://user-images.githubusercontent.com/72455964/113296750-8b3a3f00-9302-11eb-94ef-76c5bcbb8478.png" width="200" height="200" /> <img src="https://user-images.githubusercontent.com/72455964/113297104-e704c800-9302-11eb-9b3e-88f731b01485.png" width="250" height="200" /> 
+<img src="https://user-images.githubusercontent.com/72455964/114351617-8764b300-9b73-11eb-934a-28f3d41df8c4.png" width="200" height="200" />
 
 
 
