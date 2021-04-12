@@ -10,7 +10,8 @@ You can use this e-mail and password below to login to have better user experien
 
 **Last thing before getting started**
 
-You should use **"6G34"** the four-digit code which belongs to our HeroStation to use QR part of the app.
+You should use **"6G34"** the four-di
+git code which belongs to our HeroStation to use QR part of the app.
 
 
 **Here is a QR code for you to try:**
@@ -33,6 +34,8 @@ A flutter app aims to make plastic transformation by using the power of gamifica
 <img src="https://user-images.githubusercontent.com/72455964/114356718-9c444500-9b79-11eb-9caa-7f54859fa917.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114356900-c5fd6c00-9b79-11eb-9ef5-f2848431ac03.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114356728-9d757200-9b79-11eb-9771-30f343dc89f8.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114356709-9a7a8180-9b79-11eb-9a1b-12f8a6b3e9d3.jpg" width="162" height="337" /> 
 
 ## Chat Pages
+
+
 <img src="https://user-images.githubusercontent.com/72455964/114359878-175b2a80-9b7d-11eb-8e74-87efbb94d876.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114359874-1629fd80-9b7d-11eb-8cb0-e832d3b1412f.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114359870-14f8d080-9b7d-11eb-8057-9e1cd06a46de.jpg" width="162" height="337" /> <img src="https://user-images.githubusercontent.com/72455964/114357123-0826ad80-9b7a-11eb-9801-a2cdc8d52c4c.jpg" width="162" height="337" />
 
 ## Intro Pages
