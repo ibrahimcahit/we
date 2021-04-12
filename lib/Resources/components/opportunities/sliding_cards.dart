@@ -88,7 +88,7 @@ class SlidingCard extends StatelessWidget {
     return Transform.translate(
       offset: Offset(-32 * gauss * offset.sign, 0),
       child: Card(
-        margin: EdgeInsets.only(left: 8, right: 8, bottom: 24),
+        margin: EdgeInsets.only(left: 8, right: 8, bottom: 72, top: 36),
         elevation: 8,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         child: Column(

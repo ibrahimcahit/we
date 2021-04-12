@@ -1,6 +1,7 @@
 import 'package:WE/Resources/SizeConfig.dart';
 import 'package:WE/Resources/components/pop_up.dart';
 import 'package:WE/Resources/constants.dart';
+import 'package:WE/Services/ChatService/we_chat.dart';
 import 'package:flutter/material.dart';
 
 class HerProfile extends StatefulWidget {
@@ -85,7 +86,7 @@ class _HerProfileState extends State<HerProfile> {
                       Column(
                         children: <Widget>[
                           Text(
-                            "Level 6",
+                            "Level 3",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 3 * SizeConfig.textMultiplier,
@@ -145,6 +146,7 @@ class _HerProfileState extends State<HerProfile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        height: 50,
                         width: 150,
                         decoration: BoxDecoration(
                           border: Border.all(color: kPrimaryColor),
@@ -172,6 +174,7 @@ class _HerProfileState extends State<HerProfile> {
                       ),
                       SizedBox(width: 10),
                       Container(
+                        height: 50,
                         width: 120,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white),
@@ -185,13 +188,26 @@ class _HerProfileState extends State<HerProfile> {
                                 Icons.whatshot,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
-                              Text(
-                                "CHAT",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 1.8 * SizeConfig.textMultiplier),
+                              SizedBox(width: 14),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return WeChat();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "CHAT",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize:
+                                          1.8 * SizeConfig.textMultiplier),
+                                ),
                               ),
                             ],
                           ),
