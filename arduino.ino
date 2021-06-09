@@ -10,17 +10,20 @@
 #define SS    D4
 #define RST   D3
 
-#define WIFI_SSID "*************"
-#define WIFI_PASSWORD "*******"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             "
+// #define WIFI_SSID "modemus_25"
+// #define WIFI_PASSWORD "300425m_aqv"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             "
 #define FIREBASE_HOST "nodemcu-ac498-default-rtdb.firebaseio.com"
 #define FIREBASE_AUTH "rcp3WJs0ArgiIZTOPt4GLOU1pKnAIOr88BY1H4g2"
 #define DEVICE_ID "6G34"
 #define CARD 1
 
+const char* ssid = "ssid";
+const char* password = "passwd";
+
 MFRC522 rfid(SS, RST);
 MFRC522::MIFARE_Key key;
 
-HX711 scale(DOUT, CLK);
+HX711 scale;
 LiquidCrystal_I2C lcd (0x27, 16, 2);
 
 FirebaseData fbdo;
@@ -57,7 +60,7 @@ void setup() {
     key.keyByte[i] = 0xFF;
   }
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print('.');
     delay(300);
